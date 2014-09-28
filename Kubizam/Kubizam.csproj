@@ -213,10 +213,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\GeographyModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Models\TodoModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repositories\GeoRepository.cs" />
+    <Compile Include="Repositories\IGeoRepository.cs" />
+    <Compile Include="Repositories\ITodoRepository.cs" />
+    <Compile Include="Repositories\TodoRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1061,7 +1068,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
