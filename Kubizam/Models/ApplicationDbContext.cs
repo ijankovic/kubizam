@@ -14,12 +14,14 @@ namespace Kubizam.Models
         {
         }
 
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<TodoList> TodoLists { get; set; }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
 }

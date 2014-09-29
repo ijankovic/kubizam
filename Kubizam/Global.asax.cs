@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using Kubizam.Models;
+using System.Data.Entity;
+using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -17,8 +19,12 @@ namespace Kubizam
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            bool seed = WebConfigurationManager.AppSettings["Seed"] == "true";
-
+            #if DEBUG
+                if (WebConfigurationManager.AppSettings["Seed"] == "true")
+                {
+                    Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Kubizam.Migrations.Configuration>());
+                }
+            #endif
         }
     }
 }
