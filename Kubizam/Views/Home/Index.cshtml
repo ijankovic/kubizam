@@ -1,7 +1,35 @@
-﻿@section SPAViews {
-    @Html.Partial("_Home")
+﻿
+
+
+
+@section SPAViews {
+<div ng-controller="MainController">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>fakjea</h1>
+            <ul>
+                <li ng-repeat="task in tasks">
+                    {{task.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{3+1}}
+</div>
 }
+
+
+
 @section Scripts{
-    @Scripts.Render("~/bundles/knockout")
-    @Scripts.Render("~/bundles/app")
+<script>
+    (function () { /* alert('pause angular execution'); */ })();
+
+    var module = angular.module('home', ['ngResource']);
+    module.controller('MainController', function ($scope, TodoListFactory) {
+        $scope.tasks = TodoListFactory.query();
+    });
+    module.factory('TodoListFactory', function($resource) {
+        return $resource('/api/todolists/:todoId', { todoId:'@@Id' }, { "update": {method:"PUT" }});
+    });
+</script>
 }
