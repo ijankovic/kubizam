@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using AutoMapper;
+
 namespace Kubizam
 {
     public class MvcApplication : HttpApplication
@@ -19,12 +21,19 @@ namespace Kubizam
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            CreateMappings();
+
             #if DEBUG
                 if (WebConfigurationManager.AppSettings["Seed"] == "true")
                 {
                     Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Kubizam.Migrations.Configuration>());
                 }
             #endif
+        }
+
+        public void CreateMappings()
+        {
+            Mapper.CreateMap<TodoList, TodoListViewModel>();
         }
     }
 }

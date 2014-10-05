@@ -33,11 +33,4 @@ namespace Kubizam.Models
          * - related items
          */
     }
-
-    public class TodoListViewModel
-    {
-        public int Id { get; set; }
-        public String Name { get; set; }
-    }
-
 }

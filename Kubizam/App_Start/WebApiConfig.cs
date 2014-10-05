@@ -15,8 +15,10 @@ namespace Kubizam
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+
+            // [tc] #todo go back to bearer token authentication eventually
+            // config.SuppressDefaultHostAuthentication();
+            // config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

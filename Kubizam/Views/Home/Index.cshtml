@@ -25,11 +25,30 @@
     (function () { /* alert('pause angular execution'); */ })();
 
     var module = angular.module('home', ['ngResource']);
+
     module.controller('MainController', function ($scope, TodoListFactory) {
         $scope.tasks = TodoListFactory.query();
     });
-    module.factory('TodoListFactory', function($resource) {
+
+    module.factory('TodoListFactory', function ($resource) {
         return $resource('/api/todolists/:todoId', { todoId:'@@Id' }, { "update": {method:"PUT" }});
     });
+
+    module.directive('itemListForm', function () {
+        return {
+            restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
+            scope: {
+                //@@ reads the attribute value, = provides two-way binding, & works with functions
+                title: '@@'
+            },
+            template: '<div>{{ myVal }}</div>',
+            templateUrl: 'mytemplate.html',
+            controller: controllerFunction, //Embed a custom controller in the directive
+            link: function ($scope, element, attrs) { } //DOM manipulation
+        }
+    });
+
+
+
 </script>
 }
