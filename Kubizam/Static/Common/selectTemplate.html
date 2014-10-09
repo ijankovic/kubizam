@@ -1,0 +1,19 @@
+﻿<div ng-form="selectForm" class="form-group">
+    <label ng-if="label" class="control-label">{{ label }}</label>
+    <div show-errors>
+        <select ng-show="isEditing"
+                ng-disabled="disabled"
+                class="form-control"
+                ng-model="objectId"
+                ng-options="selectModel.Id as selectModel.DisplayName for selectModel in selectList"
+                name="select"
+                ng-required="ngRequired">
+            <option value="">
+                None
+            </option>
+        </select>
+        <ng-messages for="selectForm.select.$error" ng-messages-include="/Static/Common/errorMessages.html">
+            <div ng-message="required">{{label}} is required.</div>
+        </ng-messages>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿<form name="documentUploadForm" ng-submit="submitForm()">
+    <div class="row">
+        <div class="col-md-4"><label>Document Type</label></div>
+        <div class="col-md-8">
+            <select class="form-control"
+                    ng-required="true"
+                    name="select"
+                    ng-model="modalOptions.docTypeId"
+                    ng-options="docType.Id as docType.Name for docType in modalOptions.docTypes"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"><label>Expiration Date</label></div>
+        <div class="col-md-8">
+            <p class="input-group">
+                <input type="text"
+                       class="form-control"
+                       datepicker-popup="{{format}}"
+                       name="date"
+                       ng-model="modalOptions.expirationDate.data"
+                       is-open="opened"
+                       min-date="minDate"
+                       max-date="'2015-06-22'"
+                       datepicker-options="dateOptions"
+                       date-disabled="disabled(date, mode)"
+                       ng-required="true"
+                       close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+            <ng-messages for="documentUploadForm.date.$error" ng-messages-include="/Static/common/errorMessages.html">
+                <div ng-message="required">Expiration date is required.</div>
+            </ng-messages>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"><label>Default</label></div>
+        <div class="col-md-8">
+            <input type="checkbox"
+                   name="defaultOption"
+                   ng-model="modalOptions.defaultOption" />
+        </div>
+    </div>
+    <div class="row" ng-hide="modalOptions.defaultOption">
+        <div class="col-md-4"><label>State</label></div>
+        <div class="col-md-8">
+            <state-select ng-model="modalOptions.stateId"
+                          label="State"
+                          is-required="{{!modalOptions.defaultOption}}"
+                          editing="!modalOptions.defaultOption">
+            </state-select>
+        </div>
+    </div>
+    <div class="row" ng-hide="modalOptions.defaultOption">
+        <div class="col-md-4"><label>County</label></div>
+        <div class="col-md-8">
+            <county-select state-id="modalOptions.stateId"
+                           disabled="!modalOptions.stateId"
+                           label="County"
+                           ng-model="modalOptions.countyId"
+                           editing="!modalOptions.defaultOption"
+                           is-required="{{modalOptions.stateId}}">
+            </county-select>
+        </div>
+    </div>
+</form>

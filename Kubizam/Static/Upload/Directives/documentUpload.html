@@ -1,0 +1,28 @@
+﻿<div class="col-md-12">
+    <h3>Documents</h3>
+    <div class="row" ng-repeat="document in documents">
+        <div class="col-md-6 panel">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <p class="form-control-static">
+                            {{document.OriginalFilename}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="form-control"
+                                ng-options="documentType.Id as documentType.Name for documentType in documentTypes"
+                                ng-model="document.DocumentType"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <button class="panel well" ng-click="openModal()">Click for modal</button>
+        </div>
+    </div>
+</div>

@@ -1,54 +1,23 @@
-﻿
-
-
-
-@section SPAViews {
-<div ng-controller="MainController">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1>fakjea</h1>
-            <ul>
-                <li ng-repeat="task in tasks">
-                    {{task.name}}
-                </li>
-            </ul>
-        </div>
+﻿    <div ng-controller="DatepickerDemoCtrl">
+        <document-upload-area ng-model="documents">
+            <button ng-click="openModal()"></button>
+        </document-upload-area>
     </div>
-    {{3+1}}
-</div>
-}
-
 
 
 @section Scripts{
-<script>
-    (function () { /* alert('pause angular execution'); */ })();
+    @*todo: put these in bundle files*@
+   <script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
+<script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+<script src="~/Scripts/angular-messages.js"></script>
+<script src="~/Scripts/app/module.js"></script>
+<script src="~/Scripts/app/Common/module.js"></script>
+<script src="~/Scripts/app/Common/Services/modalService.js"></script>
+<script src="~/Scripts/app/Location/module.js"></script>
+<script src="~/Scripts/app/Location/Directives/stateSelect.js"></script>
+<script src="~/Scripts/app/Location/Directives/countySelect.js"></script>
+<script src="~/Scripts/app/Upload/Directives/dialogForm.js"></script>
+<script src="~/Scripts/app/Upload/Directives/documentUploadArea.js"></script> 
+    }
 
-    var module = angular.module('home', ['ngResource']);
-
-    module.controller('MainController', function ($scope, TodoListFactory) {
-        $scope.tasks = TodoListFactory.query();
-    });
-
-    module.factory('TodoListFactory', function ($resource) {
-        return $resource('/api/todolists/:todoId', { todoId:'@@Id' }, { "update": {method:"PUT" }});
-    });
-
-    module.directive('itemListForm', function () {
-        return {
-            restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
-            scope: {
-                //@@ reads the attribute value, = provides two-way binding, & works with functions
-                title: '@@'
-            },
-            template: '<div>{{ myVal }}</div>',
-            templateUrl: 'mytemplate.html',
-            controller: controllerFunction, //Embed a custom controller in the directive
-            link: function ($scope, element, attrs) { } //DOM manipulation
-        }
-    });
-
-
-
-</script>
-}

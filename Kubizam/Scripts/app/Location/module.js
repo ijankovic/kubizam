@@ -1,0 +1,1 @@
+﻿var locations = angular.module('locations', ['ngMessages']);
